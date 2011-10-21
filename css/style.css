@@ -1,0 +1,26 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+#outer {
+  width: 960px;
+  margin: 0 auto;
+}
+#inner {
+  
+}
+#viewer {
+  
+}
+header {
+  text-align: center;
+}
+#content {
+  clear: both;
+}
+aside {
+  float: left;
+}
+footer {
+  clear: both;
+}
