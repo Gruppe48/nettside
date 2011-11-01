@@ -10,83 +10,86 @@
   <div id="outer">
     <div id="inner">
       <header>
-        <h1>Oktober</h1>
+        <h1>Nyhetsbildet 2011</h1>
       </header><!-- /header -->
-      <aside>
-        <ul id="nav">
-          <li><a href="#januar" title="Januar">Januar</a></li>
-          <li><a href="#februar" title="Februar">Februar</a></li>
-          <li><a href="#mars" title="Mars">Mars</a></li>
-          <li><a href="#april" title="April">April</a></li>
-          <li><a href="#mai" title="Mai">Mai</a></li>
-          <li><a href="#juni" title="Juni">Juni</a></li>
-          <li><a href="#juli" title="Juli">Juli</a></li>
-          <li><a href="#august" title="August">August</a></li>
-          <li><a href="#september" title="September">September</a></li>
-          <li><a href="#oktober" title="Oktober">Oktober</a></li>
-          <li><a href="#november" title="November">November</a></li>
-          <li><a href="#desember" title="Desember">Desember</a></li>
-        </ul><!-- /nav -->
-      </aside>
+      
       <section id="viewer">
         <div id="previous">
           <div class="container">
-            PREVIOUS Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            
           </div><!-- /container -->
 
         </div><!-- /previous -->
         <div id="current">
           <div class="container">
-            CURRENT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        
           </div><!-- /container -->
         </div><!-- /current -->
         <div id="next">
           <div class="container">
-            NEXT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            
           </div><!-- /container -->
         </div><!-- /next -->
       </section><!-- /viewer -->
+      <aside>
+        <ul id="nav">
+          <li><button class="clean-gray">Januar</button></li>
+          <li><button class="clean-gray">Februar</button></li>
+          <li><button class="clean-gray">Mars</button></li>
+          <li><button class="clean-gray">April</button></li>
+          <li><button class="clean-gray">Mai</button></li>
+          <li><button class="clean-gray">Juni</button></li>
+          <li><button class="clean-gray">Juli</button></li>
+          <li><button class="clean-gray">August</button></li>
+          <li><button class="clean-gray">September</button></li>
+          <li><button class="clean-gray">Oktober</button></li>
+          <li><button class="clean-gray">November</button></li>
+          <li><button class="clean-gray">Desember</button></li>
+        </ul><!-- /nav -->
+      </aside>
       <section id="content">
-        <h2>Miljostasj</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div id="container">
+        
+        </div><!-- /container -->
       </section><!-- /content -->
       <footer>
-        2011  
+        <p>2011</p> 
       </footer>         
     </div><!-- /inner -->       
   </div><!-- /outer --> 
   <script type="text/javascript" charset="utf-8" async defer>
     $('#previous').fadeTo(0, 0.2);
     $('#next').fadeTo(0, 0.2);
-    $('ul#nav li:nth-child(1)').click(
+    loadMonth("August", "Oktober", "November");
+    $('ul#nav li button').click(
       function () {
-        $('#current').fadeToggle('fast', function () {
-          $('#previous > div').replaceWith($('#current > div').html());
-          $('#current > div').load('januar.html');
-          $('#next > div').replaceWith('AJAX MAGIC!?');
-        }).fadeToggle('fast');
+        var previous = $(this).parent().prev().find('button');
+        var current = $(this);
+        //$(this).css('background-color', 'yellow');
+        var next = $(this).parent().next().find('button');
+        
+        if (current.html() == "Januar") {
+          previous = $(this).parent().siblings().last().find('button');
+        }
+        if (current.html() == "Desember") {
+          next = $(this).parent().siblings().first().find('button');
+        }
+        var nextMonth = next.html();
+        var prevMonth = previous.html();
+        var currentMonth = current.html();
+  
+        loadMonth(prevMonth, currentMonth, nextMonth);
+        
+       
       });
+      function loadMonth(previous, current, next) {
+        //$('#current').fadeToggle('fast', function () {
+          $('#previous > div').load('data/' + previous + '.html #img');
+          $('#current > div').load('data/' + current + '.html #img');
+          $('#content > div').load('data/' + current + '.html #artikkel');
+          $('#next > div').load('data/' + next +'.html #img');
+        //}).fadeToggle('fast');
+      }
   </script>
 </body>
 </html>
